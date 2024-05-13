@@ -4,13 +4,14 @@ from ariadne.asgi import GraphQL
 
 from pymongo import MongoClient
 from bson import ObjectId
+from config import Config
 
 # Initialize FastAPI
 app = FastAPI()
 
 # Initialize MongoDB client
-dbURL="mongodb+srv://prathibhanm081306:Prathibha13@cluster0.zobjf3r.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-client = MongoClient(dbURL)
+
+client = MongoClient(Config.MONGODB_URL)
 db = client["test_db"]
 collection = db["items"]
 
@@ -37,9 +38,6 @@ query = QueryType()
 mutation = MutationType()
 
 
-# @query.field("items")
-# def resolve_items(_, info):
-#     return list(collection.find())
 
 
 
